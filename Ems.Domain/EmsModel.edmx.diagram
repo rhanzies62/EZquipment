@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="456df9eab409469da62284b1d672e7ba" Name="Diagram1">
+        <EntityTypeShape EntityType="EmsDevModel.Address" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmsDevModel.Company" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmsDevModel.LogInLog" Width="1.5" PointX="7.5" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmsDevModel.Phone" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmsDevModel.sysdiagram" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmsDevModel.User" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmsDevModel.UserAccount" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
+        <AssociationConnector Association="EmsDevModel.FK_Company_Address1" ManuallyRouted="false" />
+        <AssociationConnector Association="EmsDevModel.FK_User_Address" ManuallyRouted="false" />
+        <AssociationConnector Association="EmsDevModel.FK_Company_Phone" ManuallyRouted="false" />
+        <AssociationConnector Association="EmsDevModel.FK_User_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="EmsDevModel.FK_LogInLog_User" ManuallyRouted="false" />
+        <AssociationConnector Association="EmsDevModel.FK_User_UserAccount" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

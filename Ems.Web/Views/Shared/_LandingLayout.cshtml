@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="emsModule">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EZquipment - @ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href ="/Content/style.default.css" />
+</head>
+<body class="semi-white-bg">
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">EZquipment</a>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Pricing</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact Us</a>
+                </li>
+                <li class="nav-item">
+                    <button type="button" class="btn btn-outline-primary">Login</button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="wrapper">
+        @RenderBody()
+    </div>
+    <hr />
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; @DateTime.Now.Year - EZquipment Management System</p>
+        </div>
+    </footer>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/angular")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

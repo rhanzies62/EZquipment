@@ -1,0 +1,95 @@
+﻿@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_LandingLayout.cshtml";
+}
+<div class="container">
+    <div class="row margin-top-10">
+        <div class="col-md-7 col-sm-12">
+            <div class="margin-top-50">
+                <h1 class="display-4">Sign Up Now!</h1>
+                <p>and be a part of something big.</p>
+            </div>
+        </div>
+        <div class="margin-top-30 col col-md-5 col-sm-12">
+            <div class="card fadeInRight animated">
+                <div class="card-body">
+                    <h3 class="card-title">Sign Up Now!</h3>
+                    <blockquote>Fill out the required information below and we are good to go!</blockquote>
+                    @Html.AntiForgeryToken()
+                    <company-registration></company-registration>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center pricing-header">
+                    <h5 class="display-4">Pricing</h5>
+                    <p>Quickly build an effective pricing table for your potential customers with this Bootstrap example. It's built with default Bootstrap components and utilities with little customization.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card slideInLeft animated">
+                        <div class="card-header text-center">
+                            <h2 class="card-title">Free</h2>
+                        </div>
+                        <div class="card-body text-center">
+                            <h1>Php 0.00 /<small>mo</small></h1>
+                            <ul class="list-unstyled">
+                                <li>20 Equipments</li>
+                                <li>1 image per equipment</li>
+                                <li>Help center access</li>
+                                <li>-</li>
+                                <li>-</li>
+                            </ul>
+                            <button class="btn btn-lg btn-outline-primary col-md-12">Sign Up for Free</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card slideInUp animated">
+                        <div class="card-header text-center">
+                            <h2 class="card-title">Pro</h2>
+                        </div>
+                        <div class="card-body text-center">
+                            <h1>Php 499.99 /<small>mo</small></h1>
+                            <ul class="list-unstyled">
+                                <li>100+ Equipments</li>
+                                <li>10+ image per equipment</li>
+                                <li>Priority email support</li>
+                                <li>Help center access</li>
+                                <li>-</li>
+                            </ul>
+                            <button class="btn btn-lg btn-primary col-md-12">Contact Us</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card slideInRight animated">
+                        <div class="card-header text-center">
+                            <h2 class="card-title">Enterprise</h2>
+                        </div>
+                        <div class="card-body text-center">
+                            <h1>Php 999.99 /<small>mo</small></h1>
+                            <ul class="list-unstyled">
+                                <li>unlimited Equipments</li>
+                                <li>50+ image per equipment</li>
+                                <li>Priority email support</li>
+                                <li>Phone and email support</li>
+                                <li>Help center access</li>
+                            </ul>
+                            <button class="btn btn-lg btn-primary col-md-12">Contact Us</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

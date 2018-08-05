@@ -1,0 +1,78 @@
+﻿    <form name="companyRegisterForm" class="row" action="index" method="post">
+        <div class="form-group col-6">
+            <input name="companyname" type="text" class="form-control" placeholder="Enter Company Name" ng-model="CompanyRegister.CompanyName" required ng-pattern="/^[a-zA-Z]+$/" />
+            <ng-messages role="alert"
+                         ng-if="companyRegisterForm.companyname.$touched || companyRegisterForm.$submitted"
+                         for="companyRegisterForm.companyname.$error">
+                <small ng-message="pattern" class="label text-danger" ng-if="companyRegisterForm.companyname.$error.pattern">Please use latin letters only</small>
+                <small ng-message="required" class="label text-danger" ng-if="companyRegisterForm.companyname.$error.required">This field is required</small>
+            </ng-messages>
+        </div>
+        <div class="form-group col-6">
+            <input name="yearfounded" type="number" class="form-control" placeholder="Enter Year Founded" ng-model="CompanyRegister.Yearfounded" min="1900" max="{{$ctrl.getMaxYear()}}" />
+            <ng-messages role="alert"
+                         ng-if="companyRegisterForm.yearfounded.$touched || companyRegisterForm.$submitted"
+                         for="companyRegisterForm.companyname.$error">
+                <small ng-message="min,max" class="label text-danger" ng-if="companyRegisterForm.yearfounded.$error.min || companyRegisterForm.yearfounded.$error.max">1900 to {{$ctrl.getMaxYear()}} only</small>
+            </ng-messages>
+        </div>
+        <div class="form-group col-12">
+            <textarea class="form-control" placeholder="Tell us something about your company" ng-model="CompanyRegister.Background"></textarea>
+        </div>
+        <div class="form-group col-6">
+            <input name="firstname" type="text" class="form-control" placeholder="Enter First Name" ng-model="CompanyRegister.FirstName" required ng-pattern="/^[a-zA-Z]+$/" />
+            <ng-messages role="alert"
+                         ng-if="companyRegisterForm.firstname.$touched || companyRegisterForm.$submitted"
+                         for="companyRegisterForm.firstname.$error">
+                <small ng-message="pattern" class="label text-danger" ng-if="companyRegisterForm.firstname.$error.pattern">Please use latin letters only</small>
+                <small ng-message="required" class="label text-danger" ng-if="companyRegisterForm.firstname.$error.required">This field is required</small>
+            </ng-messages>
+        </div>
+        <div class="form-group col-6">
+            <input name="lastname" type="text" class="form-control" placeholder="Enter Last Name" ng-model="CompanyRegister.LastName" required ng-pattern="/^[a-zA-Z]+$/" />
+            <ng-messages role="alert"
+                         ng-if="companyRegisterForm.lastname.$touched || companyRegisterForm.$submitted"
+                         for="companyRegisterForm.lastname.$error">
+                <small ng-message="pattern" class="label text-danger" ng-if="companyRegisterForm.lastname.$error.pattern">Please use latin letters only</small>
+                <small ng-message="required" class="label text-danger" ng-if="companyRegisterForm.lastname.$error.required">This field is required</small>
+            </ng-messages>
+        </div>
+        <div class="form-group col-12">
+            <input name="email" type="text" class="form-control" placeholder="Enter Email" ng-model="CompanyRegister.Email" required
+                   ng-pattern = '/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i' />
+            <ng-messages role="alert"
+                         ng-if="companyRegisterForm.email.$touched || companyRegisterForm.$submitted"
+                         for="companyRegisterForm.email.$error">
+                <small ng-message="pattern" class="label text-danger" ng-if="companyRegisterForm.email.$error.pattern">Incorrect email address format</small>
+                <small ng-message="required" class="label text-danger" ng-if="companyRegisterForm.email.$error.required">This field is required</small>
+            </ng-messages>
+        </div>
+        <div class="form-group col-12">
+            <input name="username" type="text" class="form-control" placeholder="Enter Username" ng-model="CompanyRegister.Username" required />
+            <ng-messages role="alert"
+                         ng-if="companyRegisterForm.username.$touched || companyRegisterForm.$submitted"
+                         for="companyRegisterForm.username.$error">
+                <small ng-message="required" class="label text-danger" ng-if="companyRegisterForm.username.$error.required">This field is required</small>
+            </ng-messages>
+        </div>
+        <div class="form-group col-12">
+            <input name="password" type="password" class="form-control" placeholder="Enter Password" ng-model="CompanyRegister.Password" required />
+            <ng-messages role="alert"
+                         ng-if="companyRegisterForm.password.$touched || companyRegisterForm.$submitted"
+                         for="companyRegisterForm.password.$error">
+                <small ng-message="required" class="label text-danger" ng-if="companyRegisterForm.password.$error.required">This field is required</small>
+            </ng-messages>
+        </div>
+        <div class="form-group col-12">
+            <input name="confirmpassword" type="password" class="form-control" placeholder="Confirm Password" ng-model="CompanyRegister.ConfirmPassword" required />
+            <ng-messages role="alert"
+                         ng-if="companyRegisterForm.confirmpassword.$touched || companyRegisterForm.$submitted"
+                         for="companyRegisterForm.confirmpassword.$error">
+                <small ng-message="required" class="label text-danger" ng-if="companyRegisterForm.confirmpassword.$error.required">This field is required</small>
+            </ng-messages>
+            <small ng-show="CompanyRegister.ConfirmPassword != CompanyRegister.Password && companyRegisterForm.confirmpassword.$touched">Password mismatched</small>
+        </div>
+        <div class="col-12">
+            <button type="button" class="btn btn-success col-12" ng-click="$ctrl.clickRegister(CompanyRegister)" ng-disabled="companyRegisterForm.$invalid">Register</button>
+        </div>
+    </form>

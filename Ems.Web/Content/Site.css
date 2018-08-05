@@ -1,0 +1,39 @@
+﻿html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+
+.margin-top-10{
+    margin-top:10px;
+}
+
+.margin-top-50{
+    margin-top:50px;
+}
+
+.margin-top-30{
+    margin-top:30px;
+}
+
+.footer,
+.push {
+  height: 50px;
+}
+
+.wrapper {
+  min-height: 100%;
+}
+
+.semi-white-bg{
+    background-color:#F4F7FA
+}
+
+.pricing-header{
+    padding-left:200px;
+    padding-right:200px;
+}
