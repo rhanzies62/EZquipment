@@ -6,7 +6,7 @@
 
 emsModule
     .component('companyRegistration', {
-        templateUrl: '/home/CompanyRegister',
+        templateUrl: window.location.href + '/home/CompanyRegister',
         controller: function homeController(homeService,$scope) {
             $scope.CompanyRegister = new CompanyRegistrationModel();
             $scope.pattern = {
