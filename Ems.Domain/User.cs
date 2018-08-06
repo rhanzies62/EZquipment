@@ -33,6 +33,9 @@ namespace Ems.Domain
         public string EmailAddress { get; set; }
         public int CompanyId { get; set; }
         public Nullable<int> PhoneId { get; set; }
+        public string ValidationToken { get; set; }
+        public bool IsEmailValidated { get; set; }
+        public Nullable<System.DateTime> EmailValidatedDate { get; set; }
     
         public virtual Address Address { get; set; }
         public virtual Company Company { get; set; }

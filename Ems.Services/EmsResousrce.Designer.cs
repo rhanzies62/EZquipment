@@ -68,5 +68,60 @@ namespace Ems.Services {
                 return ResourceManager.GetString("DefaultCreatedBy", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Company name is already registered..
+        /// </summary>
+        public static string ErrMsgCompanyNameAlreadyExist {
+            get {
+                return ResourceManager.GetString("ErrMsgCompanyNameAlreadyExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email Address is already use by other account.
+        /// </summary>
+        public static string ErrMsgEmailAddressAlreadyExist {
+            get {
+                return ResourceManager.GetString("ErrMsgEmailAddressAlreadyExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Validation Token is not valid.
+        /// </summary>
+        public static string ErrMsgInvalidValidationToken {
+            get {
+                return ResourceManager.GetString("ErrMsgInvalidValidationToken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User name already exist.
+        /// </summary>
+        public static string ErrMsgUserNameAlreadyExist {
+            get {
+                return ResourceManager.GetString("ErrMsgUserNameAlreadyExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;!DOCTYPE html&gt;
+        ///&lt;html&gt;
+        ///&lt;head&gt;
+        ///    &lt;title&gt;Email Verification&lt;/title&gt;
+        ///	&lt;meta charset=&quot;utf-8&quot; /&gt;
+        ///    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css&quot; integrity=&quot;sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO&quot; crossorigin=&quot;anonymous&quot;&gt;
+        ///&lt;/head&gt;
+        ///&lt;body&gt;
+        ///    &lt;div class=&quot;container&quot; style=&quot;margin-top:50px;&quot;&gt;
+        ///        &lt;h3&gt;Greetings Francis Cebu!&lt;/h3&gt;
+        ///        &lt;p&gt;Thank you for choosing EZquipment Management System. To complete your re [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string ValidateEmailTemplate {
+            get {
+                return ResourceManager.GetString("ValidateEmailTemplate", resourceCulture);
+            }
+        }
     }
 }

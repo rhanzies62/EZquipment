@@ -2,22 +2,30 @@
 /// <reference path="../../models/CompanyRegistrationModel.js" />
 /// <reference path="../../views/companyRegister.component.html" />
 /// <reference path="../../../loading.js" />
+/// <reference path="../../models/Response.js" />
 
 emsModule
     .component('companyRegistration', {
-        templateUrl: '/scripts/app/views/companyRegister.component.html',
-        controller: function homeController(homeService) {
-            this.CompanyRegister = new CompanyRegistrationModel();
-            this.clickRegister = function (model) {
+        templateUrl: '/home/CompanyRegister',
+        controller: function homeController(homeService,$scope) {
+            $scope.CompanyRegister = new CompanyRegistrationModel();
+            $scope.pattern = {
+                emailPattern: /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+            };
+            $scope.registrationAlert = new Response(false, "");
+            $scope.clickRegister = function (model) {
                 loader().show('Submitting Information please wait');
-                homeService.registerCompany({ model: model, __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val() }).then(function (response) {
+                homeService.registerCompany(model, $('input[name="__RequestVerificationToken"]').val()).then(function (response) {
                     loader().hide();
+                    if (!response.data.IsSuccess) {
+                        $scope.registrationAlert = new Response(true, response.data.Message);
+                    }
                 }, function () {
                     loader().hide();
                 });
                 return false;
             }
-            this.getMaxYear = function () {
+            $scope.getMaxYear = function () {
                 var date = new Date();
                 return date.getFullYear();
             }

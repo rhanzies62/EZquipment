@@ -90,6 +90,9 @@
           <Property Name="EmailAddress" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="CompanyId" Type="int" Nullable="false" />
           <Property Name="PhoneId" Type="int" />
+          <Property Name="ValidationToken" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsEmailValidated" Type="bit" Nullable="false" />
+          <Property Name="EmailValidatedDate" Type="datetime" />
         </EntityType>
         <EntityType Name="UserAccount">
           <Key>
@@ -312,6 +315,9 @@
           <NavigationProperty Name="Company" Relationship="Self.FK_User_Company" FromRole="User" ToRole="Company" />
           <NavigationProperty Name="LogInLogs" Relationship="Self.FK_LogInLog_User" FromRole="User" ToRole="LogInLog" />
           <NavigationProperty Name="UserAccount" Relationship="Self.FK_User_UserAccount" FromRole="User" ToRole="UserAccount" />
+          <Property Name="ValidationToken" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsEmailValidated" Type="Boolean" Nullable="false" />
+          <Property Name="EmailValidatedDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="UserAccount">
           <Key>
@@ -517,6 +523,9 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="EmsDevModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="EmailValidatedDate" ColumnName="EmailValidatedDate" />
+                <ScalarProperty Name="IsEmailValidated" ColumnName="IsEmailValidated" />
+                <ScalarProperty Name="ValidationToken" ColumnName="ValidationToken" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />

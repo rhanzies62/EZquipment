@@ -19,7 +19,7 @@ namespace Ems.Web
 
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                         "~/Scripts/app/app.module.js",
-                        "~/Scripts/app/models/CompanyRegistrationModel.js",
+                        "~/Scripts/app/models/*.js",
                         "~/Scripts/app/shared/services/home.Service.js",
                         "~/Scripts/app/components/CompanyRegister/companyRegister.component.js"));
 
@@ -36,7 +36,8 @@ namespace Ems.Web
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/animate.css",
-                      "~/Content/loading.css"));
+                      "~/Content/loading.css",
+                      "~/Content/style.default.css"));
         }
     }
 }

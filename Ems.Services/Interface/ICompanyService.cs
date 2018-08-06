@@ -11,5 +11,7 @@ namespace Ems.Services.Interface
     public interface ICompanyService
     {
         Response CreateCompanyWithUser(CompanyDto model, string createdBy);
+        Response ValidateEmail(string validationToken);
+        Response ResendEmailActivation(string emailAddress);
     }
 }

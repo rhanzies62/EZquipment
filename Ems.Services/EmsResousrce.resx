@@ -120,4 +120,20 @@
   <data name="DefaultCreatedBy" xml:space="preserve">
     <value>admin</value>
   </data>
+  <data name="ErrMsgCompanyNameAlreadyExist" xml:space="preserve">
+    <value>Company name is already registered.</value>
+  </data>
+  <data name="ErrMsgEmailAddressAlreadyExist" xml:space="preserve">
+    <value>Email Address is already use by other account</value>
+  </data>
+  <data name="ErrMsgInvalidValidationToken" xml:space="preserve">
+    <value>Validation Token is not valid</value>
+  </data>
+  <data name="ErrMsgUserNameAlreadyExist" xml:space="preserve">
+    <value>User name already exist</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="ValidateEmailTemplate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\validateemailtemplate.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
 </root>

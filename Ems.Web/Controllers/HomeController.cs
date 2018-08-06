@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using Ems.Web.ExtensionHelper;
 using Ems.Services;
+using Ems.Web.Filters;
 
 namespace Ems.Web.Controllers
 {
@@ -23,7 +24,7 @@ namespace Ems.Web.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpPost, EmsValidateAntiForgeryToken]
         public JsonResult CompanyRegister(CompanyRegistrationViewModel model)
         {
             var companyDto = model.MapToCompanyDto();
@@ -44,5 +45,12 @@ namespace Ems.Web.Controllers
 
             return View();
         }
+
+        #region Views
+        public ActionResult CompanyRegister()
+        {
+            return View();
+        }
+        #endregion
     }
 }
