@@ -6,6 +6,7 @@ using Ems.Services;
 using Ems.Data;
 using Ems.Domain;
 using Ems.Services.Config;
+using Ems.ExternalServices;
 
 namespace Ems.Service.Test
 {
@@ -16,7 +17,7 @@ namespace Ems.Service.Test
         public void CreateCompanyWithUser_CompleteDetails_Success()
         {
             AutoMapperConfig.Init();
-            var companyService = new CompanyService(new UnitOfWork(new EmsDevEntities()));
+            var companyService = new CompanyService(new UnitOfWork(new EmsDevEntities()),new EmailService());
             #region company dto
             CompanyDto company = new CompanyDto
             {

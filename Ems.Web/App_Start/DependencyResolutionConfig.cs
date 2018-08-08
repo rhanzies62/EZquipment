@@ -2,6 +2,8 @@
 using Autofac.Integration.Mvc;
 using Ems.Data;
 using Ems.Domain.Services;
+using Ems.ExternalServices;
+using Ems.ExternalServices.Interface;
 using Ems.Services;
 using Ems.Services.Interface;
 using System;
@@ -31,6 +33,7 @@ namespace Ems.Web.App_Start
         public static void RegisterServices(ContainerBuilder builder)
         {
             builder.RegisterType<CompanyService>().As<ICompanyService>().InstancePerRequest();
+            builder.RegisterType<EmailService>().As<IEmailService>().InstancePerRequest();
         }
     }
 }

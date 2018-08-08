@@ -30,11 +30,15 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dev|AnyCPU'">
+    <OutputPath>bin\Dev\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoMapper, Version=7.0.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.7.0.1\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -50,6 +54,7 @@
   <ItemGroup>
     <Compile Include="BaseService.cs" />
     <Compile Include="Config\AutoMapperConfig.cs" />
+    <Compile Include="Config\Utility.cs" />
     <Compile Include="Cryptography\Config.cs" />
     <Compile Include="Cryptography\Cryptography.cs" />
     <Compile Include="Cryptography\Encryption.cs" />
@@ -78,9 +83,10 @@
       <Project>{C7674A99-8793-46E8-9C51-EB91ACCEE7E5}</Project>
       <Name>Ems.Domain</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\validateemailtemplate.html" />
+    <ProjectReference Include="..\Ems.ExternalServices\Ems.ExternalServices.csproj">
+      <Project>{698CBC0B-E254-45ED-9F0D-415EA9551A1F}</Project>
+      <Name>Ems.ExternalServices</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

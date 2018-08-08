@@ -18,10 +18,10 @@ namespace Ems.Web
                         "~/Scripts/jquery.validate*"));
 
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
-                        "~/Scripts/app/app.module.js",
+                        "~/Scripts/app/*.js",
                         "~/Scripts/app/models/*.js",
-                        "~/Scripts/app/shared/services/home.Service.js",
-                        "~/Scripts/app/components/CompanyRegister/companyRegister.component.js"));
+                        "~/Scripts/app/shared/services/*.js",
+                        "~/Scripts/app/components/*.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.

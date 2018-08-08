@@ -19,6 +19,8 @@ emsModule
                     loader().hide();
                     if (!response.data.IsSuccess) {
                         $scope.registrationAlert = new Response(true, response.data.Message);
+                    } else {
+                        window.location = "home/success";
                     }
                 }, function () {
                     loader().hide();

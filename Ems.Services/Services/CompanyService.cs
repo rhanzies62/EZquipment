@@ -4,7 +4,9 @@ using Ems.Domain.Common;
 using Ems.Domain.DTO;
 //using Ems.Domain.Entities;
 using Ems.Domain.Services;
+using Ems.ExternalServices.Interface;
 using Ems.Service.Cryptography;
+using Ems.Services.Config;
 using Ems.Services.Interface;
 using System;
 using System.Collections.Generic;
@@ -16,9 +18,10 @@ namespace Ems.Services
 {
     public class CompanyService : BaseService, ICompanyService
     {
-        public CompanyService(IUnitOfWork unitOfWork) : base(unitOfWork)
+        private readonly IEmailService _emailService;
+        public CompanyService(IUnitOfWork unitOfWork, IEmailService emailService) : base(unitOfWork)
         {
-
+            _emailService = emailService;
         }
 
         public Response CreateCompanyWithUser(CompanyDto model, string createdBy)
@@ -28,14 +31,17 @@ namespace Ems.Services
             {
                 var companyRepo = _unitOfWork.Repository<Company>();
                 var userRepo = _unitOfWork.Repository<User>();
+                string fullName = string.Empty,
+                       validationToken = Cryptography.CreateSalt();
+
                 Company company = Mapper.Map<Company>(model);
                 company.CreatedBy = createdBy;
                 company.CreatedDate = DateTime.UtcNow;
                 company.CompanyCode = $"COMP-{companyRepo.Get().Count()}";
 
-                if(companyRepo.Query().Filter(i=> i.Name == company.Name).Get().Any())
+                if (companyRepo.Query().Filter(i => i.Name == company.Name).Get().Any())
                 {
-                    response = new Response(ResponseType.Error,EmsResousrce.ErrMsgCompanyNameAlreadyExist);
+                    response = new Response(ResponseType.Error, EmsResousrce.ErrMsgCompanyNameAlreadyExist);
                     return response;
                 }
 
@@ -59,27 +65,30 @@ namespace Ems.Services
                     company.Address.CreatedDate = DateTime.UtcNow;
                 }
 
-                foreach (var companyUser in company.Users)
+                foreach (var user in company.Users)
                 {
-                    companyUser.CreatedBy = createdBy;
-                    companyUser.CreatedDate = DateTime.UtcNow;
-                    companyUser.ValidationToken = Cryptography.CreateSalt();
-                    if (companyUser.Address != null)
+                    fullName = $"{user.FirstName} {user.LastName}";
+                    user.CreatedBy = createdBy;
+                    user.CreatedDate = DateTime.UtcNow;
+                    user.ValidationToken = validationToken;
+                    if (user.Address != null)
                     {
-                        companyUser.Address.CreatedBy = createdBy;
-                        companyUser.Address.CreatedDate = DateTime.UtcNow;
+                        user.Address.CreatedBy = createdBy;
+                        user.Address.CreatedDate = DateTime.UtcNow;
                     }
-                    if (companyUser.UserAccount != null)
+                    if (user.UserAccount != null)
                     {
-                        companyUser.UserAccount.CreatedBy = createdBy;
-                        companyUser.UserAccount.CreatedDate = DateTime.UtcNow;
-                        companyUser.UserAccount.Salt = Cryptography.CreateSalt();
-                        companyUser.UserAccount.Password = Hashbrowns.Hash(companyUser.UserAccount.Password, companyUser.UserAccount.Salt);
+                        user.UserAccount.CreatedBy = createdBy;
+                        user.UserAccount.CreatedDate = DateTime.UtcNow;
+                        user.UserAccount.Salt = Cryptography.CreateSalt();
+                        user.UserAccount.Password = Hashbrowns.Hash(user.UserAccount.Password, user.UserAccount.Salt);
                     }
                 }
                 companyRepo.Insert(company);
                 _unitOfWork.Save();
-                //Insert Code For Sending Email
+
+                string validationLink = $"{Utility.GetConfig(EmsResousrce.ConfigBaseUrl)}validate?t={validationToken}";
+                _emailService.SendEmailActivation(fullName, validationLink, email);
                 response = new Response(ResponseType.Success);
             }
             catch (Exception e)
@@ -107,10 +116,11 @@ namespace Ems.Services
 
                 var userRepo = _unitOfWork.Repository<User>();
                 var user = userRepo.Query().Filter(i => i.ValidationToken == validationToken).Get().FirstOrDefault();
-                if(user != null)
+                if (user != null)
                 {
                     user.IsEmailValidated = true;
                     user.EmailValidatedDate = DateTime.UtcNow;
+                    user.UserAccount.IsActive = true;
                     userRepo.Update(user);
                     _unitOfWork.Save();
                     response = new Response(ResponseType.Success);
@@ -121,7 +131,7 @@ namespace Ems.Services
                 }
 
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 response = new Response(ResponseType.Error, e.GetBaseException().Message);
             }

@@ -1,0 +1,33 @@
+﻿@model Ems.Domain.Common.Response
+@{
+    ViewBag.Title = "Verification";
+    Layout = "~/Views/Shared/_LandingLayout.cshtml";
+}
+
+
+<div class="jumbotron text-xs-center text-md-center">
+    @if (Model.IsSuccess)
+    {
+        <h1 class="display-3"> Congratulations! </h1>
+        <hr>
+        <p>
+            Email is now activated. Please click the link below to login your account.
+        </p>
+        <p class="lead">
+            <a class="btn btn-primary btn-sm" href="@Url.Action("index","login")" role="button">Continue to Login Page</a>
+        </p>
+    }
+    else
+    {
+        <h1 class="display-3"> Error! </h1>
+        <p class="lead"><strong>Please check your email</strong> for further instructions on how to complete your account setup.</p>
+        <hr>
+        <p>
+            No Email Recieve? <a href="">Resend Verification link</a>
+        </p>
+        <p class="lead">
+            <a class="btn btn-primary btn-sm" href="@Url.Action("index")" role="button">Continue to homepage</a>
+        </p>
+    }
+</div>
+

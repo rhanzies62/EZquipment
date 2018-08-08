@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Ems.Services {
+namespace Ems.ExternalServices {
     using System;
     
     
@@ -22,24 +22,24 @@ namespace Ems.Services {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class EmsResousrce {
+    internal class EmsExternalServiceResource {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal EmsResousrce() {
+        internal EmsExternalServiceResource() {
         }
         
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Ems.Services.EmsResousrce", typeof(EmsResousrce).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Ems.ExternalServices.EmsExternalServiceResource", typeof(EmsExternalServiceResource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace Ems.Services {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,56 +61,48 @@ namespace Ems.Services {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to BaseUrl.
+        ///   Looks up a localized string similar to Verify Email.
         /// </summary>
-        public static string ConfigBaseUrl {
+        internal static string SubjectValidateEmail {
             get {
-                return ResourceManager.GetString("ConfigBaseUrl", resourceCulture);
+                return ResourceManager.GetString("SubjectValidateEmail", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to admin.
+        ///   Looks up a localized string similar to ##FullName##.
         /// </summary>
-        public static string DefaultCreatedBy {
+        internal static string TokenFullName {
             get {
-                return ResourceManager.GetString("DefaultCreatedBy", resourceCulture);
+                return ResourceManager.GetString("TokenFullName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Company name is already registered..
+        ///   Looks up a localized string similar to ##ValidationLink##.
         /// </summary>
-        public static string ErrMsgCompanyNameAlreadyExist {
+        internal static string TokenValidationLink {
             get {
-                return ResourceManager.GetString("ErrMsgCompanyNameAlreadyExist", resourceCulture);
+                return ResourceManager.GetString("TokenValidationLink", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Email Address is already use by other account.
+        ///   Looks up a localized string similar to &lt;!DOCTYPE html&gt;
+        ///&lt;html&gt;
+        ///&lt;head&gt;
+        ///    &lt;title&gt;Email Verification&lt;/title&gt;
+        ///	&lt;meta charset=&quot;utf-8&quot; /&gt;
+        ///    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css&quot; integrity=&quot;sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO&quot; crossorigin=&quot;anonymous&quot;&gt;
+        ///&lt;/head&gt;
+        ///&lt;body&gt;
+        ///    &lt;div class=&quot;container&quot; style=&quot;margin-top:50px;&quot;&gt;
+        ///        &lt;h3&gt;Greetings ##FullName##!&lt;/h3&gt;
+        ///        &lt;p&gt;Thank you for choosing EZquipment Management System. To complete your re [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string ErrMsgEmailAddressAlreadyExist {
+        internal static string validateemailtemplate {
             get {
-                return ResourceManager.GetString("ErrMsgEmailAddressAlreadyExist", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Validation Token is not valid.
-        /// </summary>
-        public static string ErrMsgInvalidValidationToken {
-            get {
-                return ResourceManager.GetString("ErrMsgInvalidValidationToken", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to User name already exist.
-        /// </summary>
-        public static string ErrMsgUserNameAlreadyExist {
-            get {
-                return ResourceManager.GetString("ErrMsgUserNameAlreadyExist", resourceCulture);
+                return ResourceManager.GetString("validateemailtemplate", resourceCulture);
             }
         }
     }
