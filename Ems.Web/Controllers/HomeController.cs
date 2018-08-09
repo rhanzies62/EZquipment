@@ -32,6 +32,11 @@ namespace Ems.Web.Controllers
             return Json(response);
         }
 
+        public ActionResult Success()
+        {
+            return View();
+        }
+
         public virtual ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

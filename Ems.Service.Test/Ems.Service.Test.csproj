@@ -35,6 +35,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dev|AnyCPU'">
+    <OutputPath>bin\Dev\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
@@ -73,6 +76,10 @@
     <ProjectReference Include="..\Ems.Domain\Ems.Domain.csproj">
       <Project>{C7674A99-8793-46E8-9C51-EB91ACCEE7E5}</Project>
       <Name>Ems.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ems.ExternalServices\Ems.ExternalServices.csproj">
+      <Project>{698CBC0B-E254-45ED-9F0D-415EA9551A1F}</Project>
+      <Name>Ems.ExternalServices</Name>
     </ProjectReference>
     <ProjectReference Include="..\Ems.Services\Ems.Services.csproj">
       <Project>{85a27021-229c-4f00-a627-2d059441eb41}</Project>

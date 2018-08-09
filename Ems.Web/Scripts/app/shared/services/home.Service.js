@@ -5,6 +5,7 @@ emsModule.service('homeService', function ($http, $q) {
     return {
         registerCompany: function (model,token) {
             var root = "http://localhost:56048/";
+            //var root = "http://localhost/ems";
             var defer = $q.defer();
             $http.defaults.headers.common['X-XSRF-Token'] = token;
             $http({

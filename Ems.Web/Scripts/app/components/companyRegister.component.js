@@ -6,7 +6,7 @@
 
 emsModule
     .component('companyRegistration', {
-        templateUrl: '/home/CompanyRegister',
+        templateUrl: window.location.href + '/home/CompanyRegister',
         controller: function homeController(homeService,$scope) {
             $scope.CompanyRegister = new CompanyRegistrationModel();
             $scope.pattern = {
@@ -19,6 +19,8 @@ emsModule
                     loader().hide();
                     if (!response.data.IsSuccess) {
                         $scope.registrationAlert = new Response(true, response.data.Message);
+                    } else {
+                        window.location = "home/success";
                     }
                 }, function () {
                     loader().hide();

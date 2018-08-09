@@ -1,0 +1,35 @@
+﻿
+@{
+    Layout = null;
+}
+
+<form name="loginForm">
+    <div class="row">
+        <div class="col-md-12">
+            <input name="UserName" type="text" class="form-control" placeholder="Enter Username" ng-model="loginCrendetial.UserName" required />
+            <ng-messages role="alert"
+                         ng-if="loginForm.UserName.$touched || loginForm.$submitted"
+                         for="companyRegisterForm.username.$error">
+                <small ng-message="required" class="label text-danger" ng-if="loginForm.UserName.$error.required">This field is required</small>
+            </ng-messages>
+            <input name="Password" type="password" class="form-control" placeholder="Enter Password" ng-model="loginCrendetial.Password" required />
+            <ng-messages role="alert"
+                         ng-if="loginForm.Password.$touched || loginForm.$submitted"
+                         for="companyRegisterForm.password.$error">
+                <small ng-message="required" class="label text-danger" ng-if="loginForm.Password.$error.required">This field is required</small>
+            </ng-messages>
+        </div>
+    </div>
+    <div class="row margin-top-10">
+        <div class="col-md-6">
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="RememberMe" ng-model="loginCrendetial.RememberMe">
+                <label class="form-check-label" for="RememberMe">Remeber me</label>
+            </div>
+        </div>
+        <div class="col-md-6 text-right">
+            <a href="#"><small>Forgot password?</small></a>
+        </div>
+    </div>
+    <button type="button" class="btn btn-primary col-md-12" ng-click="login(loginCrendetial)" ng-disabled="loginForm.$invalid">Login</button>
+</form>
