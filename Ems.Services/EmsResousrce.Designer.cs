@@ -70,6 +70,15 @@ namespace Ems.Services {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MaxLoginAttempt.
+        /// </summary>
+        public static string ConfigMaxLoginAttempt {
+            get {
+                return ResourceManager.GetString("ConfigMaxLoginAttempt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to admin.
         /// </summary>
         public static string DefaultCreatedBy {
@@ -97,11 +106,38 @@ namespace Ems.Services {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Maximum login attempt reach. Please Contact Administrator.
+        /// </summary>
+        public static string ErrMsgInvalidLoginAttempt {
+            get {
+                return ResourceManager.GetString("ErrMsgInvalidLoginAttempt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Password.
+        /// </summary>
+        public static string ErrMsgInvalidPassword {
+            get {
+                return ResourceManager.GetString("ErrMsgInvalidPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Validation Token is not valid.
         /// </summary>
         public static string ErrMsgInvalidValidationToken {
             get {
                 return ResourceManager.GetString("ErrMsgInvalidValidationToken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User name not found.
+        /// </summary>
+        public static string ErrMsgNoUserFound {
+            get {
+                return ResourceManager.GetString("ErrMsgNoUserFound", resourceCulture);
             }
         }
         

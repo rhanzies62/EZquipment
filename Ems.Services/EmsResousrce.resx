@@ -120,6 +120,9 @@
   <data name="ConfigBaseUrl" xml:space="preserve">
     <value>BaseUrl</value>
   </data>
+  <data name="ConfigMaxLoginAttempt" xml:space="preserve">
+    <value>MaxLoginAttempt</value>
+  </data>
   <data name="DefaultCreatedBy" xml:space="preserve">
     <value>admin</value>
   </data>
@@ -129,8 +132,17 @@
   <data name="ErrMsgEmailAddressAlreadyExist" xml:space="preserve">
     <value>Email Address is already use by other account</value>
   </data>
+  <data name="ErrMsgInvalidLoginAttempt" xml:space="preserve">
+    <value>Maximum login attempt reach. Please Contact Administrator</value>
+  </data>
+  <data name="ErrMsgInvalidPassword" xml:space="preserve">
+    <value>Invalid Password</value>
+  </data>
   <data name="ErrMsgInvalidValidationToken" xml:space="preserve">
     <value>Validation Token is not valid</value>
+  </data>
+  <data name="ErrMsgNoUserFound" xml:space="preserve">
+    <value>User name not found</value>
   </data>
   <data name="ErrMsgUserNameAlreadyExist" xml:space="preserve">
     <value>User name already exist</value>

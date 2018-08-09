@@ -106,7 +106,7 @@
           <Property Name="UserName" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
-          <Property Name="IsLock" Type="int" Nullable="false" />
+          <Property Name="IsLock" Type="bit" Nullable="false" />
           <Property Name="MaxLoginAttempt" Type="int" Nullable="false" />
           <Property Name="Salt" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
@@ -331,7 +331,7 @@
           <Property Name="UserName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="IsLock" Type="Int32" Nullable="false" />
+          <Property Name="IsLock" Type="Boolean" Nullable="false" />
           <Property Name="MaxLoginAttempt" Type="Int32" Nullable="false" />
           <Property Name="Salt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Users" Relationship="Self.FK_User_UserAccount" FromRole="UserAccount" ToRole="User" />

@@ -1,0 +1,1 @@
+<Playlist Version="1.0"><Add Test="Ems.Service.Test.AuthenticateService.AuthenticateServiceTest.LoginUser_Incorrect_Success" /><Add Test="Ems.Service.Test.AuthenticateService.AuthenticateServiceTest.LoginUser_Correct_Success" /></Playlist>

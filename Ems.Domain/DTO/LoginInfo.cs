@@ -8,5 +8,6 @@ namespace Ems.Domain.DTO
     {
         public int UserId { get; set; }
         public string UserName { get; set; }
+        public string EmailAddress { get; set; }
     }
 }
