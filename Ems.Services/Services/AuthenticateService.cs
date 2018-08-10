@@ -20,9 +20,9 @@ namespace Ems.Services
 
         }
 
-        public Response Login(UserAccountDto userAccountDto)
+        public Response<LoginInfoDto> Login(UserAccountDto userAccountDto)
         {
-            Response response;
+            Response<LoginInfoDto> response;
             try
             {
                 int maxAttempt = int.Parse(Utility.GetConfig(EmsResousrce.ConfigMaxLoginAttempt));
@@ -35,7 +35,7 @@ namespace Ems.Services
                         var passwordHash = Hashbrowns.Hash(userAccountDto.Password, userAccount.Salt);
                         if (userAccount.Password == passwordHash)
                         {
-                            response = new Response(ResponseType.Success, string.Empty, new LoginInfoDto
+                            response = new Response<LoginInfoDto>(ResponseType.Success, string.Empty, new LoginInfoDto
                             {
                                 EmailAddress = userAccount.Users.First().EmailAddress,
                                 UserId = userAccount.Users.First().Id,
@@ -45,17 +45,17 @@ namespace Ems.Services
                         else
                         {
                             userAccount.MaxLoginAttempt++;
-                            response = new Response(ResponseType.Error, EmsResousrce.ErrMsgInvalidPassword, new LoginInfoDto { UserId = userAccount.Users.First().Id });
+                            response = new Response<LoginInfoDto>(ResponseType.Error, EmsResousrce.ErrMsgInvalidPassword, new LoginInfoDto { UserId = userAccount.Users.First().Id });
                         }
                     }
                     else
                     {
-                        response = new Response(ResponseType.Error, EmsResousrce.ErrMsgInvalidLoginAttempt);
+                        response = new Response<LoginInfoDto>(ResponseType.Error, EmsResousrce.ErrMsgInvalidLoginAttempt, new LoginInfoDto { UserId = userAccount.Users.First().Id });
                     }
                 }
                 else
                 {
-                    response = new Response(ResponseType.Error, EmsResousrce.ErrMsgNoUserFound);
+                    response = new Response<LoginInfoDto>(ResponseType.Critical, EmsResousrce.ErrMsgNoUserFound, new LoginInfoDto());
                 }
 
                 if (response.StatusType == ResponseType.Error || response.StatusType == ResponseType.Success)
@@ -67,14 +67,14 @@ namespace Ems.Services
                         ErrorMessage = response.Message,
                         IPAddress = userAccountDto.IPAddress,
                         IsSuccess = response.IsSuccess,
-                        UserId = response.Data?.UserId
+                        UserId = response.Data.UserId
                     });
                 }
                 _unitOfWork.Save();
             }
             catch (Exception e)
             {
-                response = new Response(ResponseType.Critical, e.GetBaseException().Message);
+                response = new Response<LoginInfoDto>(ResponseType.Critical, e.GetBaseException().Message);
             }
 
             return response;

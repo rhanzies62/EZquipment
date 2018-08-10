@@ -10,8 +10,8 @@ namespace Ems.Services.Interface
 {
     public interface ICompanyService
     {
-        Response CreateCompanyWithUser(CompanyDto model, string createdBy);
-        Response ValidateEmail(string validationToken);
-        Response ResendEmailActivation(string emailAddress);
+        Response<bool> CreateCompanyWithUser(CompanyDto model, string createdBy);
+        Response<bool> ValidateEmail(string validationToken);
+        Response<bool> ResendEmailActivation(string emailAddress);
     }
 }

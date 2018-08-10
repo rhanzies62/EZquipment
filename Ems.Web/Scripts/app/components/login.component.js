@@ -8,10 +8,20 @@
 emsModule
     .component('loginForm', {
         templateUrl: window.location.href + '/loginform',
-        controller: function loginController($scope) {
+        controller: function loginController(loginService,$scope) {
             $scope.loginCrendetial = new LoginCredential();
             $scope.login = function (login) {
-                console.log(login);
+                loader().show('');
+                loginService.login(login, '', $('input[name="__RequestVerificationToken"]').val()).then(function (response) {
+                    loader().hide();
+                    if (!response.data.IsSuccess) {
+                        $scope.registrationAlert = new Response(true, response.data.Message);
+                    } else {
+                        window.location = "dashboard/index";
+                    }
+                }, function () {
+                    loader().hide();
+                });
             }
         }
     });

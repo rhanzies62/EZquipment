@@ -10,6 +10,6 @@ namespace Ems.Services.Interface
 {
     public interface IAuthenticateService
     {
-        Response Login(UserAccountDto userAccountDto);
+        Response<LoginInfoDto> Login(UserAccountDto userAccountDto);
     }
 }

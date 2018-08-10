@@ -18,7 +18,7 @@ namespace Ems.Domain.DTO
         string _name;
         public string Name {
             get {
-                return _name.ToUpper().Trim();
+                return _name?.ToUpper().Trim();
             }
             set { _name = value; }
         }

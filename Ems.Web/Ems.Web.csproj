@@ -161,6 +161,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Authentication\AppPrincipal.cs" />
+    <Compile Include="Authentication\AppRole.cs" />
+    <Compile Include="Authentication\EmsAuthorizeAttribute.cs" />
+    <Compile Include="Authentication\EmsMembership.cs" />
+    <Compile Include="Authentication\EmsMembershipUser.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ValidateController.cs" />
@@ -207,6 +213,7 @@
     <Content Include="Scripts\app\shared\services\home.Service.js" />
     <Content Include="Scripts\app\components\companyRegister.component.js" />
     <Content Include="Scripts\app\models\CompanyRegistrationModel.js" />
+    <Content Include="Scripts\app\shared\services\login.Service.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -291,6 +298,7 @@
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Shared\_AuthenticateLayout.cshtml" />
     <Content Include="Views\Login\loginform.cshtml" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
     <None Include="Web.Dev.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

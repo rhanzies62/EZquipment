@@ -7,32 +7,31 @@ using Ems.Data;
 using Ems.Domain;
 using Ems.Services.Config;
 using Ems.ExternalServices;
-
+using System.Linq;
 namespace Ems.Service.Test
 {
     [TestClass]
     public class CompanyServiceTest
     {
-        [TestMethod]
-        public void CreateCompanyWithUser_CompleteDetails_Success()
+        public CompanyServiceTest()
         {
-            AutoMapperConfig.Init();
-            var companyService = new CompanyService(new UnitOfWork(new EmsDevEntities()),new EmailService());
-            #region company dto
-            CompanyDto company = new CompanyDto
+        }
+
+        #region company dto
+        CompanyDto company = new CompanyDto
+        {
+            Name = $"Basecamp {Guid.NewGuid().ToString("N").Substring(0, 10)}",
+            Founded = DateTime.UtcNow.Year,
+            Background = "Test",
+            Address = new AddressDto
             {
-                Name = "Basecamp",
-                Founded = DateTime.UtcNow.Year,
-                Background = "Test",
-                Address = new AddressDto
-                {
-                    City = "San Juan",
-                    Long = 1,
-                    Lat = 2,
-                    PostalCode = "1422",
-                    StreetAddress = "1110 wilshire annapolis"
-                },
-                Users = new List<UserDto>
+                City = "San Juan",
+                Long = 1,
+                Lat = 2,
+                PostalCode = "1422",
+                StreetAddress = "1110 wilshire annapolis"
+            },
+            Users = new List<UserDto>
                 {
                     new UserDto
                             {
@@ -55,12 +54,57 @@ namespace Ems.Service.Test
                                     IsActive = true,
                                     IsLock = false
                                 },
-                                EmailAddress = "fcebu@gmail.com",
+                                EmailAddress = $"fcebu{Guid.NewGuid().ToString("N").Substring(0, 10)}@gmail.com",
+
                             }
                 }
-            };
-            #endregion
-            companyService.CreateCompanyWithUser(company, "test");
+        };
+        #endregion
+        [TestMethod]
+        public void CreateCompanyWithUser_ExistingCompanyName()
+        {
+            AutoMapperConfig.Init();
+            var companyService = new CompanyService(new UnitOfWork(new EmsDevEntities()),new EmailService());
+            company.Name = "Basecamp";
+            var response = companyService.CreateCompanyWithUser(company, "test");
+            Assert.AreEqual(false, response.IsSuccess);
+        }
+
+        [TestMethod]
+        public void CreateCompanyWithUser_Success()
+        {
+            var companyService = new CompanyService(new UnitOfWork(new EmsDevEntities()), new EmailService());
+            var response = companyService.CreateCompanyWithUser(company, "test");
+            Assert.AreEqual(true, response.IsSuccess);
+        }
+
+        [TestMethod]
+        public void CreateCompanyWithUser_ExistingUserName()
+        {
+            var companyService = new CompanyService(new UnitOfWork(new EmsDevEntities()), new EmailService());
+            company.Users.FirstOrDefault().UserAccount.UserName = "franciscebu";
+            var response = companyService.CreateCompanyWithUser(company, "test");
+            Assert.AreEqual(false, response.IsSuccess);
+        }
+
+        [TestMethod]
+        public void CreateCompanyWithUser_ExistingEmailAddress()
+        {
+            var companyService = new CompanyService(new UnitOfWork(new EmsDevEntities()), new EmailService());
+            company.Users.FirstOrDefault().EmailAddress= "fcebu@gmail.com";
+            var response = companyService.CreateCompanyWithUser(company, "test");
+            Assert.AreEqual(false, response.IsSuccess);
+        }
+
+        [TestMethod]
+        public void CreateCompanyWithUser_IncompleteDetails()
+        {
+            var companyService = new CompanyService(new UnitOfWork(new EmsDevEntities()), new EmailService());
+            company.Name = null;
+            company.Users.FirstOrDefault().FirstName = null;
+            company.Users.FirstOrDefault().LastName= null;
+            var response = companyService.CreateCompanyWithUser(company, "test");
+            Assert.AreEqual(false, response.IsSuccess);
         }
     }
 }

@@ -72,6 +72,7 @@
     <Compile Include="DTO\CompanyUser.cs" />
     <Compile Include="DTO\LoginInfo.cs" />
     <Compile Include="DTO\PhoneDto.cs" />
+    <Compile Include="DTO\RoleDto.cs" />
     <Compile Include="DTO\User.cs" />
     <Compile Include="DTO\UserAccount.cs" />
     <Compile Include="DTO\UserEmail.cs" />

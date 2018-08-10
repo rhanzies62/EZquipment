@@ -2,10 +2,14 @@
 @{
     Layout = null;
 }
-
+<div class="alert alert-danger" role="alert" ng-if="registrationAlert.IsVisible">
+    <h4 class="alert-heading">Error</h4>
+    {{registrationAlert.Message}}
+</div>
 <form name="loginForm">
     <div class="row">
         <div class="col-md-12">
+            @Html.AntiForgeryToken()
             <input name="UserName" type="text" class="form-control" placeholder="Enter Username" ng-model="loginCrendetial.UserName" required />
             <ng-messages role="alert"
                          ng-if="loginForm.UserName.$touched || loginForm.$submitted"

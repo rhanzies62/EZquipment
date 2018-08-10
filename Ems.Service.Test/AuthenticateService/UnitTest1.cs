@@ -17,8 +17,8 @@ namespace Ems.Service.Test.AuthenticateService
             var authenticateService = new Ems.Services.AuthenticateService(new UnitOfWork(new EmsDevEntities()));
             var response = authenticateService.Login(new Domain.DTO.UserAccountDto
             {
-                UserName = "franciscebu",
-                Password = "123456",
+                UserName = "ad10018bcc",
+                Password = "1234567",
                 IPAddress = "192.168.0.1"
             });
             Assert.AreEqual(true, response.IsSuccess);
@@ -30,12 +30,25 @@ namespace Ems.Service.Test.AuthenticateService
             var authenticateService = new Ems.Services.AuthenticateService(new UnitOfWork(new EmsDevEntities()));
             var response = authenticateService.Login(new Domain.DTO.UserAccountDto
             {
-                UserName = "franciscebu",
+                UserName = "abacasda",
                 Password = "1234561",
                 IPAddress = "192.168.0.1"
             });
             Assert.AreEqual(false, response.IsSuccess);
-            Assert.AreEqual(EmsResousrce.ErrMsgInvalidPassword, response.Message);
+        }
+
+        [TestMethod]
+        public void LoginUser_NotExistingUser_Success()
+        {
+            var authenticateService = new Ems.Services.AuthenticateService(new UnitOfWork(new EmsDevEntities()));
+            var response = authenticateService.Login(new Domain.DTO.UserAccountDto
+            {
+                UserName = "franciscebu1",
+                Password = "123456",
+                IPAddress = "192.168.0.1"
+            });
+            Assert.AreEqual(false, response.IsSuccess);
+            //Assert.AreEqual(EmsResousrce.ErrMsgInvalidPassword, response.Message);
         }
     }
 }
