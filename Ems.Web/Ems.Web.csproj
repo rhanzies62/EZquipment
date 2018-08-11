@@ -169,6 +169,7 @@
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\LogoutController.cs" />
     <Compile Include="Controllers\ValidateController.cs" />
     <Compile Include="Filters\EmsValidateAntiForgeryTokenAttribute.cs" />
     <Compile Include="ExtensionHelper\MapperExtension.cs" />
@@ -307,6 +308,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Scripts\app\shared\directives\" />
     <Folder Include="Scripts\app\shared\filters\" />
+    <Folder Include="Views\Logout\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -12,9 +12,11 @@ using System.Web.Security;
 
 namespace Ems.Web.Controllers
 {
+    [EmsAuth]
     public class LoginController : Controller
     {
         // GET: Login
+        [NoCache]
         public ActionResult Index()
         {
             return View();
@@ -24,6 +26,7 @@ namespace Ems.Web.Controllers
         {
             return View();
         }
+
         [HttpPost, EmsValidateAntiForgeryToken]
         public JsonResult Login(UserAccountDto loginView, string ReturnUrl = "")
         {
