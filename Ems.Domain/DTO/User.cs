@@ -25,7 +25,7 @@ namespace Ems.Domain.DTO
         {
             get
             {
-                return _firstName.ToUpper().Trim();
+                return _firstName?.ToUpper().Trim();
             }
             set { _firstName = value; }
         }
@@ -47,7 +47,7 @@ namespace Ems.Domain.DTO
         {
             get
             {
-                return _lastName.ToUpper().Trim();
+                return _lastName?.ToUpper().Trim();
             }
             set { _lastName = value; }
         }

@@ -33,6 +33,7 @@ namespace Ems.Web.App_Start
         public static void RegisterServices(ContainerBuilder builder)
         {
             builder.RegisterType<CompanyService>().As<ICompanyService>().InstancePerRequest();
+            builder.RegisterType<AuthenticateService>().As<IAuthenticateService>().InstancePerRequest();
             builder.RegisterType<EmailService>().As<IEmailService>().InstancePerRequest();
         }
     }

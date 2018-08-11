@@ -24,9 +24,9 @@ namespace Ems.Services
             _emailService = emailService;
         }
 
-        public Response CreateCompanyWithUser(CompanyDto model, string createdBy)
+        public Response<bool> CreateCompanyWithUser(CompanyDto model, string createdBy)
         {
-            Response response;
+            Response<bool> response;
             try
             {
                 var companyRepo = _unitOfWork.Repository<Company>();
@@ -41,21 +41,21 @@ namespace Ems.Services
 
                 if (companyRepo.Query().Filter(i => i.Name == company.Name).Get().Any())
                 {
-                    response = new Response(ResponseType.Error, EmsResousrce.ErrMsgCompanyNameAlreadyExist);
+                    response = new Response<bool>(ResponseType.Error, EmsResousrce.ErrMsgCompanyNameAlreadyExist);
                     return response;
                 }
 
                 string email = model.Users?.FirstOrDefault().EmailAddress;
                 if (userRepo.Query().Filter(i => i.EmailAddress == email).Get().Any())
                 {
-                    response = new Response(ResponseType.Error, EmsResousrce.ErrMsgEmailAddressAlreadyExist);
+                    response = new Response<bool>(ResponseType.Error, EmsResousrce.ErrMsgEmailAddressAlreadyExist);
                     return response;
                 }
 
                 string username = model.Users?.FirstOrDefault().UserAccount?.UserName;
                 if (userRepo.Query().Filter(i => i.UserAccount.UserName == username).Get().Any())
                 {
-                    response = new Response(ResponseType.Error, EmsResousrce.ErrMsgUserNameAlreadyExist);
+                    response = new Response<bool>(ResponseType.Error, EmsResousrce.ErrMsgUserNameAlreadyExist);
                     return response;
                 }
 
@@ -89,28 +89,28 @@ namespace Ems.Services
 
                 string validationLink = $"{Utility.GetConfig(EmsResousrce.ConfigBaseUrl)}validate?t={validationToken}";
                 _emailService.SendEmailActivation(fullName, validationLink, email);
-                response = new Response(ResponseType.Success);
+                response = new Response<bool>(ResponseType.Success);
             }
             catch (Exception e)
             {
-                response = new Response(ResponseType.Error, e.GetBaseException().Message);
+                response = new Response<bool>(ResponseType.Error, e.GetBaseException().Message);
             }
             return response;
         }
 
-        public Response ResendEmailActivation(string emailAddress)
+        public Response<bool> ResendEmailActivation(string emailAddress)
         {
             throw new NotImplementedException();
         }
 
-        public Response ValidateEmail(string validationToken)
+        public Response<bool> ValidateEmail(string validationToken)
         {
-            Response response;
+            Response<bool> response;
             try
             {
                 if (string.IsNullOrWhiteSpace(validationToken))
                 {
-                    response = new Response(ResponseType.Error, EmsResousrce.ErrMsgInvalidValidationToken);
+                    response = new Response<bool>(ResponseType.Error, EmsResousrce.ErrMsgInvalidValidationToken);
                     return response;
                 }
 
@@ -123,17 +123,17 @@ namespace Ems.Services
                     user.UserAccount.IsActive = true;
                     userRepo.Update(user);
                     _unitOfWork.Save();
-                    response = new Response(ResponseType.Success);
+                    response = new Response<bool>(ResponseType.Success);
                 }
                 else
                 {
-                    response = new Response(ResponseType.Error, EmsResousrce.ErrMsgInvalidValidationToken);
+                    response = new Response<bool>(ResponseType.Error, EmsResousrce.ErrMsgInvalidValidationToken);
                 }
 
             }
             catch (Exception e)
             {
-                response = new Response(ResponseType.Error, e.GetBaseException().Message);
+                response = new Response<bool>(ResponseType.Error, e.GetBaseException().Message);
             }
             return response;
         }
