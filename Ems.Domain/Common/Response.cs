@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ems.Domain.Common
 {
-    public class Response
+    public class Response<T>
     {
         public Response()
         {
@@ -54,7 +54,7 @@ namespace Ems.Domain.Common
             }
         }
 
-        public dynamic Data { get; set; }
+        public T Data { get; set; }
     }
 
     public enum ResponseType

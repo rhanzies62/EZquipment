@@ -13,9 +13,9 @@ namespace Ems.ExternalServices
 {
     public class EmailService : IEmailService
     {
-        private Response SendEmail(EmailContent content)
+        private Response<bool> SendEmail(EmailContent content)
         {
-            Response response;
+            Response<bool> response;
             try
             {
                 var client = new SmtpClient("smtp.gmail.com", 587)
@@ -28,16 +28,16 @@ namespace Ems.ExternalServices
                 mailMessage.Body = content.Body;
                 mailMessage.Subject = content.Subject;
                 client.Send(mailMessage);
-                response = new Response(ResponseType.Success);
+                response = new Response<bool>(ResponseType.Success);
             }
             catch (Exception e)
             {
-                response = new Response(ResponseType.Error, e.GetBaseException().Message);
+                response = new Response<bool>(ResponseType.Error, e.GetBaseException().Message);
             }
             return response;
         }
 
-        public Response SendEmailActivation(string fullName, string validationLink, string email)
+        public Response<bool> SendEmailActivation(string fullName, string validationLink, string email)
         {
             var content = EmsExternalServiceResource.validateemailtemplate
                             .Replace(EmsExternalServiceResource.TokenFullName, fullName)

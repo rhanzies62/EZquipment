@@ -9,6 +9,6 @@ namespace Ems.ExternalServices.Interface
 {
     public interface IEmailService
     {
-        Response SendEmailActivation(string fullName, string validationLink, string email);
+        Response<bool> SendEmailActivation(string fullName, string validationLink, string email);
     }
 }

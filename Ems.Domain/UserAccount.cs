@@ -28,7 +28,7 @@ namespace Ems.Domain
         public string UserName { get; set; }
         public string Password { get; set; }
         public bool IsActive { get; set; }
-        public int IsLock { get; set; }
+        public bool IsLock { get; set; }
         public int MaxLoginAttempt { get; set; }
         public string Salt { get; set; }
     

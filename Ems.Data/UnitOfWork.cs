@@ -2,6 +2,7 @@
 using Ems.Domain.Services;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,7 +31,26 @@ namespace Ems.Data
 
         public void Save()
         {
-            context.SaveChanges();
+            try
+            {
+                context.SaveChanges();
+            }
+            catch (DbEntityValidationException e)
+            {
+                var builder = new StringBuilder();
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        builder.Append($"\"{eve.Entry.Entity.GetType().Name} {ve.PropertyName}\", Error: \"{ve.ErrorMessage}\"\n");
+                    }
+                }
+                throw new Exception(builder.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
         private bool disposed = false;
