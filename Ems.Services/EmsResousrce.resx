@@ -126,6 +126,9 @@
   <data name="DefaultCreatedBy" xml:space="preserve">
     <value>admin</value>
   </data>
+  <data name="DefaultRole" xml:space="preserve">
+    <value>System Administrator</value>
+  </data>
   <data name="ErrMsgCompanyNameAlreadyExist" xml:space="preserve">
     <value>Company name is already registered.</value>
   </data>

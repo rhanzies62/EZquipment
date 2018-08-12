@@ -18,6 +18,11 @@
         <AssociationConnector Association="EmsDevModel.FK_User_Company" ManuallyRouted="false" />
         <AssociationConnector Association="EmsDevModel.FK_LogInLog_User" ManuallyRouted="false" />
         <AssociationConnector Association="EmsDevModel.FK_User_UserAccount" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="EmsDevModel.Role" Width="1.5" PointX="5.25" PointY="10.125" />
+        <EntityTypeShape EntityType="EmsDevModel.UserRole" Width="1.5" PointX="8.5" PointY="5.75" />
+        <AssociationConnector Association="EmsDevModel.FK_Role_Company" />
+        <AssociationConnector Association="EmsDevModel.FK_UserRole_Role" />
+        <AssociationConnector Association="EmsDevModel.FK_UserRole_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

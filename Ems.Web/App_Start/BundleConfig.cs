@@ -38,7 +38,9 @@ namespace Ems.Web
                       "~/Content/site.css",
                       "~/Content/animate.css",
                       "~/Content/loading.css",
-                      "~/Content/style.default.css"));
+                      "~/Content/style.default.css",
+                      "~/Content/font-awesome.min.css",
+                      "~/Content/fontastic.css"));
         }
     }
 }

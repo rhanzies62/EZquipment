@@ -83,6 +83,15 @@ namespace Ems.Services
                         user.UserAccount.Salt = Cryptography.CreateSalt();
                         user.UserAccount.Password = Hashbrowns.Hash(user.UserAccount.Password, user.UserAccount.Salt);
                     }
+                    user.UserRoles.Add(new UserRole
+                    {
+                        Role = new Role
+                        {
+                            Company = company,
+                            Name = EmsResousrce.DefaultRole,
+                            CreatedDate = DateTime.UtcNow,
+                        }
+                    });
                 }
                 companyRepo.Insert(company);
                 _unitOfWork.Save();

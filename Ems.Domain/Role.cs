@@ -12,32 +12,22 @@ namespace Ems.Domain
     using System;
     using System.Collections.Generic;
     
-    public partial class Company : BaseEntity
+    public partial class Role : BaseEntity
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Company()
+        public Role()
         {
-            this.Users = new HashSet<User>();
-            this.Roles = new HashSet<Role>();
+            this.UserRoles = new HashSet<UserRole>();
         }
     
         public int Id { get; set; }
-        public string CreatedBy { get; set; }
-        public string UpdatedBy { get; set; }
+        public string Name { get; set; }
         public System.DateTime CreatedDate { get; set; }
         public Nullable<System.DateTime> UpdatedDate { get; set; }
-        public Nullable<int> AddressId { get; set; }
-        public string Name { get; set; }
-        public string Background { get; set; }
-        public Nullable<int> Founded { get; set; }
-        public string CompanyCode { get; set; }
-        public Nullable<int> PhoneId { get; set; }
+        public int CompanyId { get; set; }
     
-        public virtual Address Address { get; set; }
-        public virtual Phone Phone { get; set; }
+        public virtual Company Company { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> Users { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Role> Roles { get; set; }
+        public virtual ICollection<UserRole> UserRoles { get; set; }
     }
 }

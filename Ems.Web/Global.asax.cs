@@ -42,7 +42,7 @@ namespace Ems.Web
                 principal.UserId = serializeModel.UserId;
                 principal.FirstName = serializeModel.FirstName;
                 principal.LastName = serializeModel.LastName;
-                //principal.Roles = serializeModel.RoleName.ToArray<string>();
+                principal.Roles = serializeModel.Roles?.Select(i => i.RoleName).ToArray<string>();
 
                 HttpContext.Current.User = principal;
             }

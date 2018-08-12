@@ -40,7 +40,8 @@ namespace Ems.Web.Controllers
                     UserId = user.UserId,
                     FirstName = user.FirstName,
                     LastName = user.LastName,
-                    EmailAddress = user.Email
+                    EmailAddress = user.Email,
+                    Roles = user.Roles
                 };
 
                 string userData = JsonConvert.SerializeObject(userModel);

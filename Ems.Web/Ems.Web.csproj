@@ -166,10 +166,12 @@
     <Compile Include="Authentication\EmsAuthorizeAttribute.cs" />
     <Compile Include="Authentication\EmsMembership.cs" />
     <Compile Include="Authentication\EmsMembershipUser.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\LogoutController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\ValidateController.cs" />
     <Compile Include="Filters\EmsValidateAntiForgeryTokenAttribute.cs" />
     <Compile Include="ExtensionHelper\MapperExtension.cs" />
@@ -198,6 +200,11 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\fontastic.css" />
+    <Content Include="fonts\dashboard.svg" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\img\no-avatar.png" />
     <Content Include="Content\loading.css" />
     <Content Include="Content\style.default.css" />
     <Content Include="favicon.ico" />
@@ -237,6 +244,14 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\dashboard.eot" />
+    <Content Include="fonts\dashboard.ttf" />
+    <Content Include="fonts\dashboard.woff" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\front.js" />
@@ -301,6 +316,7 @@
     <Content Include="Views\Shared\_AuthenticateLayout.cshtml" />
     <Content Include="Views\Login\loginform.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\Profile\Index.cshtml" />
     <None Include="Web.Dev.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -309,6 +325,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Scripts\app\shared\directives\" />
     <Folder Include="Scripts\app\shared\filters\" />
+    <Folder Include="Views\Base\" />
     <Folder Include="Views\Logout\" />
   </ItemGroup>
   <ItemGroup>

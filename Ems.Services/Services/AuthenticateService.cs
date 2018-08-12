@@ -26,31 +26,38 @@ namespace Ems.Services
             try
             {
                 int maxAttempt = int.Parse(Utility.GetConfig(EmsResousrce.ConfigMaxLoginAttempt));
-                var userAccountRepo = _unitOfWork.Repository<UserAccount>();
-                var userAccount = userAccountRepo.Query().Filter(i => i.UserName == userAccountDto.UserName).Get().FirstOrDefault();
-                if (userAccount != null)
+                var userRepo = _unitOfWork.Repository<User>();
+                var user = userRepo.Query().Filter(i => i.UserAccount.UserName == userAccountDto.UserName).Get().FirstOrDefault();
+                if (user != null)
                 {
-                    if (userAccount.MaxLoginAttempt < maxAttempt)
+                    if (user.UserAccount.MaxLoginAttempt < maxAttempt)
                     {
-                        var passwordHash = Hashbrowns.Hash(userAccountDto.Password, userAccount.Salt);
-                        if (userAccount.Password == passwordHash)
+                        var passwordHash = Hashbrowns.Hash(userAccountDto.Password, user.UserAccount.Salt);
+                        if (user.UserAccount.Password == passwordHash)
                         {
                             response = new Response<LoginInfoDto>(ResponseType.Success, string.Empty, new LoginInfoDto
                             {
-                                EmailAddress = userAccount.Users.First().EmailAddress,
-                                UserId = userAccount.Users.First().Id,
-                                UserName = userAccount.UserName
+                                EmailAddress = user.EmailAddress,
+                                UserId = user.Id,
+                                UserName = user.UserAccount.UserName,
+                                FirstName = user.FirstName,
+                                LastName = user.LastName,
+                                Roles = user.UserRoles.Select(i => new RoleDto
+                                {
+                                    RoleId = i.RoleId,
+                                    RoleName = i.Role.Name
+                                })
                             });
                         }
                         else
                         {
-                            userAccount.MaxLoginAttempt++;
-                            response = new Response<LoginInfoDto>(ResponseType.Error, EmsResousrce.ErrMsgInvalidPassword, new LoginInfoDto { UserId = userAccount.Users.First().Id });
+                            user.UserAccount.MaxLoginAttempt++;
+                            response = new Response<LoginInfoDto>(ResponseType.Error, EmsResousrce.ErrMsgInvalidPassword, new LoginInfoDto { UserId = user.Id });
                         }
                     }
                     else
                     {
-                        response = new Response<LoginInfoDto>(ResponseType.Error, EmsResousrce.ErrMsgInvalidLoginAttempt, new LoginInfoDto { UserId = userAccount.Users.First().Id });
+                        response = new Response<LoginInfoDto>(ResponseType.Error, EmsResousrce.ErrMsgInvalidLoginAttempt, new LoginInfoDto { UserId = user.Id });
                     }
                 }
                 else

@@ -88,6 +88,15 @@ namespace Ems.Services {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to System Administrator.
+        /// </summary>
+        public static string DefaultRole {
+            get {
+                return ResourceManager.GetString("DefaultRole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Company name is already registered..
         /// </summary>
         public static string ErrMsgCompanyNameAlreadyExist {

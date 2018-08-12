@@ -4,16 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Globalization;
+
 namespace Ems.Web.Controllers
 {
-    
-    public class DashboardController : BaseController
+    [EmsAuthorize]
+    public class BaseController : Controller
     {
-        // GET: Dashboard
-        public ActionResult Index()
+        // GET: Base
+        public AppPrincipal appUser
         {
-            return View();
+            get { return (AppPrincipal)User; }
         }
     }
 }
