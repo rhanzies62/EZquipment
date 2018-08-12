@@ -12,7 +12,8 @@ namespace Ems.Web
                         "~/Scripts/jquery-{version}.js", 
                         "~/Scripts/jquery.smooth-scroll.js",
                         "~/Scripts/angular.min.js",
-                        "~/Scripts/loading.js"));
+                        "~/Scripts/loading.js",
+                        "~/Scripts/front.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
