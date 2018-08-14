@@ -7,12 +7,12 @@ using System.Web.Mvc;
 using System.Globalization;
 namespace Ems.Web.Controllers
 {
-    
     public class DashboardController : BaseController
     {
         // GET: Dashboard
         public ActionResult Index()
         {
+            appUser.IsInRole("Test");
             return View();
         }
     }

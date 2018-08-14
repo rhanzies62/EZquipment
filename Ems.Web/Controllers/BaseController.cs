@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace Ems.Web.Controllers
 {
-    [EmsAuthorize]
+    [EmsAuthorize(role: "System Administrator")]
     public class BaseController : Controller
     {
         // GET: Base

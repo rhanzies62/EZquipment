@@ -152,6 +152,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Company_Phone1">
+          <End Role="Phone" Type="Self.Phone" Multiplicity="0..1" />
+          <End Role="Company" Type="Self.Company" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Phone">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Company">
+              <PropertyRef Name="PhoneId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_LogInLog_User">
           <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="LogInLog" Type="Self.LogInLog" Multiplicity="*" />
@@ -197,6 +209,18 @@
             </Principal>
             <Dependent Role="User">
               <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Phone">
+          <End Role="Phone" Type="Self.Phone" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Phone">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="PhoneId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -254,6 +278,10 @@
             <End Role="Phone" EntitySet="Phone" />
             <End Role="Company" EntitySet="Company" />
           </AssociationSet>
+          <AssociationSet Name="FK_Company_Phone1" Association="Self.FK_Company_Phone1">
+            <End Role="Phone" EntitySet="Phone" />
+            <End Role="Company" EntitySet="Company" />
+          </AssociationSet>
           <AssociationSet Name="FK_LogInLog_User" Association="Self.FK_LogInLog_User">
             <End Role="User" EntitySet="User" />
             <End Role="LogInLog" EntitySet="LogInLog" />
@@ -268,6 +296,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_User_Company" Association="Self.FK_User_Company">
             <End Role="Company" EntitySet="Company" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Phone" Association="Self.FK_User_Phone">
+            <End Role="Phone" EntitySet="Phone" />
             <End Role="User" EntitySet="User" />
           </AssociationSet>
           <AssociationSet Name="FK_User_UserAccount" Association="Self.FK_User_UserAccount">
@@ -352,6 +384,7 @@
           <Property Name="Number" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Extension" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Companies" Relationship="Self.FK_Company_Phone" FromRole="Phone" ToRole="Company" />
+          <NavigationProperty Name="Users" Relationship="EmsDevModel.FK_User_Phone" FromRole="Phone" ToRole="User" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -388,6 +421,7 @@
           <Property Name="IsEmailValidated" Type="Boolean" Nullable="false" />
           <Property Name="EmailValidatedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="UserRoles" Relationship="EmsDevModel.FK_UserRole_User" FromRole="User" ToRole="UserRole" />
+          <NavigationProperty Name="Phone" Relationship="EmsDevModel.FK_User_Phone" FromRole="User" ToRole="Phone" />
         </EntityType>
         <EntityType Name="UserAccount">
           <Key>
@@ -524,6 +558,10 @@
             <End Role="User" EntitySet="Users" />
             <End Role="UserRole" EntitySet="UserRoles" />
           </AssociationSet>
+          <AssociationSet Name="FK_User_Phone" Association="EmsDevModel.FK_User_Phone">
+            <End Role="Phone" EntitySet="Phones" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Role">
           <Key>
@@ -580,6 +618,18 @@
             </Principal>
             <Dependent Role="UserRole">
               <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Phone">
+          <End Type="EmsDevModel.Phone" Role="Phone" Multiplicity="0..1" />
+          <End Type="EmsDevModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Phone">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="PhoneId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

@@ -8,6 +8,12 @@ namespace Ems.Web.Authentication
 {
     public class EmsAuthorizeAttribute : AuthorizeAttribute
     {
+        private readonly string _role;
+        public EmsAuthorizeAttribute(string role = "")
+        {
+            _role = role;
+        }
+
         protected virtual AppPrincipal CurrentUser
         {
             get { return HttpContext.Current.User as AppPrincipal; }

@@ -56,6 +56,8 @@ namespace Ems.Domain.DTO
 
         public UserAccountDto UserAccount { get; set; }
 
-        public virtual CompanyDto Company { get; set; }
+        public CompanyDto Company { get; set; }
+
+        public PhoneDto Phone { get; set; }
     }
 }

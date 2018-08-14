@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using Ems.Web.ExtensionHelper;
 using Ems.Services;
 using Ems.Web.Filters;
+using Ems.Web.Authentication;
 
 namespace Ems.Web.Controllers
 {
@@ -21,6 +22,7 @@ namespace Ems.Web.Controllers
 
         public virtual ActionResult Index()
         {
+            var u = User;
             return View();
         }
 

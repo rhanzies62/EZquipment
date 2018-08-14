@@ -67,9 +67,11 @@
     </Compile>
     <Compile Include="Interface\ICompanyService.cs" />
     <Compile Include="Interface\IAuthenticateService.cs" />
+    <Compile Include="Interface\IUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AuthenticateService.cs" />
     <Compile Include="Services\CompanyService.cs" />
+    <Compile Include="Services\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

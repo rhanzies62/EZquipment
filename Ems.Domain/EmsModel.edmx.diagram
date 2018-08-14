@@ -23,6 +23,7 @@
         <AssociationConnector Association="EmsDevModel.FK_Role_Company" />
         <AssociationConnector Association="EmsDevModel.FK_UserRole_Role" />
         <AssociationConnector Association="EmsDevModel.FK_UserRole_User" />
+        <AssociationConnector Association="EmsDevModel.FK_User_Phone" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1,11 +1,103 @@
-﻿
+﻿@using Ems.Web.Authentication
 @{
+    var appUser = (AppPrincipal)this.User;
     ViewBag.Title = "Profile";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Name = $"{appUser.FirstName} {appUser.LastName}";
+    ViewBag.Role = appUser.Roles.FirstOrDefault();
 }
 
-
-<div class="row">
-    <div class="col-lg-3">test</div>
-    <div class="col-lg-9">test</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <img src="~/Content/img/no-avatar.png" class="img-thumbnail rounded-circle" />
+                    <h5>@ViewBag.Name</h5>
+                    <p class="lead">@ViewBag.Role</p>
+                </div>
+                <div class="col-lg-12 margin-top-10">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong>Activities</strong>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <i>No recent activies</i>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-9">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#personalInformation" role="tab" aria-controls="personalInformation" aria-selected="true">Personal Information</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#accountInformation" role="tab" aria-controls="accountInformation" aria-selected="false">Account Information</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active margin-top-30" id="personalInformation" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <p class="lead">Basic Information</p>
+                                </div>
+                                <div class="col-lg-4 form-group">
+                                    <label>First Name</label>
+                                    <input type="text" class="form-control" />
+                                </div>
+                                <div class="col-lg-4 form-group">
+                                    <label>Middle Name</label>
+                                    <input type="text" class="form-control" />
+                                </div>
+                                <div class="col-lg-4 form-group">
+                                    <label>Last Name</label>
+                                    <input type="text" class="form-control" />
+                                </div>
+                                <div class="col-lg-6 form-group">
+                                    <label>Email Address</label>
+                                    <input type="text" class="form-control" />
+                                </div>
+                                <div class="col-lg-6 form-group">
+                                    <label>Phone Number</label>
+                                    <input type="text" class="form-control" />
+                                </div>
+                                <div class="col-lg-12">
+                                    <p class="lead">Address Information</p>
+                                </div>
+                                <div class="col-lg-6 form-group">
+                                    <label>Street Address</label>
+                                    <input type="text" class="form-control" />
+                                </div>
+                                <div class="col-lg-6 form-group">
+                                    <label>Street Address 2</label>
+                                    <input type="text" class="form-control" />
+                                </div>
+                                <div class="col-lg-6 form-group">
+                                    <label>City</label>
+                                    <input type="text" class="form-control" />
+                                </div>
+                                <div class="col-lg-6 form-group">
+                                    <label>Postal Code</label>
+                                    <input type="text" class="form-control" />
+                                </div>
+                                <div class="col-lg-3 offset-lg-9 text-right">
+                                    <button type="button" class="btn btn-primary">Update Information</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="accountInformation" role="tabpanel" aria-labelledby="profile-tab">
+                    account information
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
