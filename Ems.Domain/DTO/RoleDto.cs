@@ -10,5 +10,6 @@ namespace Ems.Domain.DTO
     {
         public int RoleId { get; set; }
         public string RoleName { get; set; }
+        public IEnumerable<SecurityProfileDto> SecurityProfiles { get; set; }
     }
 }

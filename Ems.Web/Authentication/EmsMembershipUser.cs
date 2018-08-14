@@ -15,7 +15,8 @@ namespace Ems.Web.Authentication
         public int UserId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public IEnumerable<RoleDto> Roles { get; set; }
+        public string[] Roles { get; set; }
+        public string[] AccessMenus { get; set; }
         public Response<LoginInfoDto> Response { get; set; }
         #endregion
 
@@ -37,6 +38,7 @@ namespace Ems.Web.Authentication
             FirstName = response.Data.FirstName;
             LastName = response.Data.LastName;
             Roles = response.Data.Roles;
+            AccessMenus = response.Data.AccessMenus;
             Response = response;
         }
     }

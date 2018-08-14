@@ -42,11 +42,8 @@ namespace Ems.Services
                                 UserName = user.UserAccount.UserName,
                                 FirstName = user.FirstName,
                                 LastName = user.LastName,
-                                Roles = user.UserRoles.Select(i => new RoleDto
-                                {
-                                    RoleId = i.RoleId,
-                                    RoleName = i.Role.Name
-                                })
+                                Roles = user.UserRoles.Select(i => i.Role.Name).ToArray(),
+                                AccessMenus = user.UserRoles.Select(i => i.Role.SecurityProfiles.Select(ii => ii.AccessMenu.InternalName).ToArray()).FirstOrDefault()
                             });
                         }
                         else

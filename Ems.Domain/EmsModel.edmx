@@ -5,6 +5,17 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="EmsDevModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AccessMenu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Url" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsPanel" Type="bit" Nullable="false" />
+          <Property Name="IsSubMenu" Type="bit" Nullable="false" />
+          <Property Name="InternalName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="Address">
           <Key>
             <PropertyRef Name="Id" />
@@ -72,6 +83,19 @@
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="UpdatedDate" Type="datetime" />
           <Property Name="CompanyId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SecurityProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="AccessMenuId" Type="int" Nullable="false" />
+          <Property Name="HasAccess" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdatedDate" Type="datetime" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -188,6 +212,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SecurityProfile_AccessMenu">
+          <End Role="AccessMenu" Type="Self.AccessMenu" Multiplicity="1" />
+          <End Role="SecurityProfile" Type="Self.SecurityProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccessMenu">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SecurityProfile">
+              <PropertyRef Name="AccessMenuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SecurityProfile_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="SecurityProfile" Type="Self.SecurityProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SecurityProfile">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_Address">
           <End Role="Address" Type="Self.Address" Multiplicity="0..1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -261,11 +309,13 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="EmsDevModelStoreContainer">
+          <EntitySet Name="AccessMenu" EntityType="Self.AccessMenu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LogInLog" EntityType="Self.LogInLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Phone" EntityType="Self.Phone" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SecurityProfile" EntityType="Self.SecurityProfile" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserAccount" EntityType="Self.UserAccount" Schema="dbo" store:Type="Tables" />
@@ -289,6 +339,14 @@
           <AssociationSet Name="FK_Role_Company" Association="Self.FK_Role_Company">
             <End Role="Company" EntitySet="Company" />
             <End Role="Role" EntitySet="Role" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SecurityProfile_AccessMenu" Association="Self.FK_SecurityProfile_AccessMenu">
+            <End Role="AccessMenu" EntitySet="AccessMenu" />
+            <End Role="SecurityProfile" EntitySet="SecurityProfile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SecurityProfile_Role" Association="Self.FK_SecurityProfile_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="SecurityProfile" EntitySet="SecurityProfile" />
           </AssociationSet>
           <AssociationSet Name="FK_User_Address" Association="Self.FK_User_Address">
             <End Role="Address" EntitySet="Address" />
@@ -562,6 +620,16 @@
             <End Role="Phone" EntitySet="Phones" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
+          <EntitySet Name="AccessMenus" EntityType="EmsDevModel.AccessMenu" />
+          <EntitySet Name="SecurityProfiles" EntityType="EmsDevModel.SecurityProfile" />
+          <AssociationSet Name="FK_SecurityProfile_AccessMenu" Association="EmsDevModel.FK_SecurityProfile_AccessMenu">
+            <End Role="AccessMenu" EntitySet="AccessMenus" />
+            <End Role="SecurityProfile" EntitySet="SecurityProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SecurityProfile_Role" Association="EmsDevModel.FK_SecurityProfile_Role">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="SecurityProfile" EntitySet="SecurityProfiles" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Role">
           <Key>
@@ -574,6 +642,7 @@
           <Property Name="CompanyId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Company" Relationship="EmsDevModel.FK_Role_Company" FromRole="Role" ToRole="Company" />
           <NavigationProperty Name="UserRoles" Relationship="EmsDevModel.FK_UserRole_Role" FromRole="Role" ToRole="UserRole" />
+          <NavigationProperty Name="SecurityProfiles" Relationship="EmsDevModel.FK_SecurityProfile_Role" FromRole="Role" ToRole="SecurityProfile" />
         </EntityType>
         <EntityType Name="UserRole">
           <Key>
@@ -630,6 +699,57 @@
             </Principal>
             <Dependent Role="User">
               <PropertyRef Name="PhoneId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AccessMenu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Url" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsPanel" Type="Boolean" Nullable="false" />
+          <Property Name="IsSubMenu" Type="Boolean" Nullable="false" />
+          <Property Name="InternalName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SecurityProfiles" Relationship="EmsDevModel.FK_SecurityProfile_AccessMenu" FromRole="AccessMenu" ToRole="SecurityProfile" />
+        </EntityType>
+        <EntityType Name="SecurityProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="AccessMenuId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="HasAccess" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AccessMenu" Relationship="EmsDevModel.FK_SecurityProfile_AccessMenu" FromRole="SecurityProfile" ToRole="AccessMenu" />
+          <NavigationProperty Name="Role" Relationship="EmsDevModel.FK_SecurityProfile_Role" FromRole="SecurityProfile" ToRole="Role" />
+        </EntityType>
+        <Association Name="FK_SecurityProfile_AccessMenu">
+          <End Type="EmsDevModel.AccessMenu" Role="AccessMenu" Multiplicity="1" />
+          <End Type="EmsDevModel.SecurityProfile" Role="SecurityProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccessMenu">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SecurityProfile">
+              <PropertyRef Name="AccessMenuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SecurityProfile_Role">
+          <End Type="EmsDevModel.Role" Role="Role" Multiplicity="1" />
+          <End Type="EmsDevModel.SecurityProfile" Role="SecurityProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SecurityProfile">
+              <PropertyRef Name="RoleId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -767,6 +887,32 @@
               <MappingFragment StoreEntitySet="UserRole">
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccessMenus">
+            <EntityTypeMapping TypeName="EmsDevModel.AccessMenu">
+              <MappingFragment StoreEntitySet="AccessMenu">
+                <ScalarProperty Name="InternalName" ColumnName="InternalName" />
+                <ScalarProperty Name="IsSubMenu" ColumnName="IsSubMenu" />
+                <ScalarProperty Name="IsPanel" ColumnName="IsPanel" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SecurityProfiles">
+            <EntityTypeMapping TypeName="EmsDevModel.SecurityProfile">
+              <MappingFragment StoreEntitySet="SecurityProfile">
+                <ScalarProperty Name="HasAccess" ColumnName="HasAccess" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="AccessMenuId" ColumnName="AccessMenuId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

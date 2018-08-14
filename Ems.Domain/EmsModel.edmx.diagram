@@ -24,6 +24,10 @@
         <AssociationConnector Association="EmsDevModel.FK_UserRole_Role" />
         <AssociationConnector Association="EmsDevModel.FK_UserRole_User" />
         <AssociationConnector Association="EmsDevModel.FK_User_Phone" />
+        <EntityTypeShape EntityType="EmsDevModel.AccessMenu" Width="1.5" PointX="8.375" PointY="8.75" />
+        <EntityTypeShape EntityType="EmsDevModel.SecurityProfile" Width="1.5" PointX="10.375" PointY="0.75" />
+        <AssociationConnector Association="EmsDevModel.FK_SecurityProfile_AccessMenu" />
+        <AssociationConnector Association="EmsDevModel.FK_SecurityProfile_Role" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

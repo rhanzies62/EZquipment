@@ -12,11 +12,10 @@ using System.Web.Security;
 
 namespace Ems.Web.Controllers
 {
-    [EmsAuth]
     public class LoginController : Controller
     {
         // GET: Login
-        [NoCache]
+        //[NoCache]
         public ActionResult Index()
         {
             return View();
@@ -41,7 +40,8 @@ namespace Ems.Web.Controllers
                     FirstName = user.FirstName,
                     LastName = user.LastName,
                     EmailAddress = user.Email,
-                    Roles = user.Roles
+                    Roles = user.Roles,
+                    AccessMenus = user.AccessMenus
                 };
 
                 string userData = JsonConvert.SerializeObject(userModel);
@@ -52,6 +52,7 @@ namespace Ems.Web.Controllers
 
                 string enTicket = FormsAuthentication.Encrypt(authTicket);
                 HttpCookie faCookie = new HttpCookie("Cookie1", enTicket);
+                faCookie.Expires = DateTime.Now.AddMinutes(15);
                 Response.Cookies.Add(faCookie);
             }
             return Json(response);

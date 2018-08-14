@@ -31,6 +31,10 @@ namespace Ems.Services
             {
                 var companyRepo = _unitOfWork.Repository<Company>();
                 var userRepo = _unitOfWork.Repository<User>();
+                var accessMenuRepo = _unitOfWork.Repository<AccessMenu>();
+
+                var accessMenus = accessMenuRepo.Get().ToList();
+
                 string fullName = string.Empty,
                        validationToken = Cryptography.CreateSalt();
 
@@ -83,15 +87,23 @@ namespace Ems.Services
                         user.UserAccount.Salt = Cryptography.CreateSalt();
                         user.UserAccount.Password = Hashbrowns.Hash(user.UserAccount.Password, user.UserAccount.Salt);
                     }
-                    user.UserRoles.Add(new UserRole
+                    var role = new Role
                     {
-                        Role = new Role
+                        Company = company,
+                        Name = EmsResousrce.DefaultRole,
+                        CreatedDate = DateTime.UtcNow,
+                    };
+                    foreach (var accessMenu in accessMenus)
+                    {
+                        role.SecurityProfiles.Add(new SecurityProfile
                         {
-                            Company = company,
-                            Name = EmsResousrce.DefaultRole,
+                            AccessMenu = accessMenu,
+                            CreatedBy = EmsResousrce.DefaultCreatedBy,
                             CreatedDate = DateTime.UtcNow,
-                        }
-                    });
+                            HasAccess = true
+                        });
+                    }
+                    user.UserRoles.Add(new UserRole { Role = role });
                 }
                 companyRepo.Insert(company);
                 _unitOfWork.Save();
@@ -103,7 +115,7 @@ namespace Ems.Services
             catch (Exception e)
             {
                 response = new Response<bool>(ResponseType.Error, e.GetBaseException().Message);
-            }
+             }
             return response;
         }
 

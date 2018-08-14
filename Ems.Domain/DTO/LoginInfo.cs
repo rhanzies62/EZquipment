@@ -11,6 +11,7 @@ namespace Ems.Domain.DTO
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string EmailAddress { get; set; }
-        public IEnumerable<RoleDto> Roles { get; set; }
+        public string[] Roles { get; set; }
+        public string[] AccessMenus { get; set; }
     }
 }

@@ -12,24 +12,21 @@ namespace Ems.Domain
     using System;
     using System.Collections.Generic;
     
-    public partial class Role : BaseEntity
+    public partial class AccessMenu : BaseEntity
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Role()
+        public AccessMenu()
         {
-            this.UserRoles = new HashSet<UserRole>();
             this.SecurityProfiles = new HashSet<SecurityProfile>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
-        public System.DateTime CreatedDate { get; set; }
-        public Nullable<System.DateTime> UpdatedDate { get; set; }
-        public int CompanyId { get; set; }
+        public string Url { get; set; }
+        public bool IsPanel { get; set; }
+        public bool IsSubMenu { get; set; }
+        public string InternalName { get; set; }
     
-        public virtual Company Company { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserRole> UserRoles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SecurityProfile> SecurityProfiles { get; set; }
     }

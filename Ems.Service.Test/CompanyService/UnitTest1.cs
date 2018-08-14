@@ -73,6 +73,7 @@ namespace Ems.Service.Test
         [TestMethod]
         public void CreateCompanyWithUser_Success()
         {
+            //AutoMapperConfig.Init();
             var companyService = new CompanyService(new UnitOfWork(new EmsDevEntities()), new EmailService());
             var response = companyService.CreateCompanyWithUser(company, "test");
             Assert.AreEqual(true, response.IsSuccess);

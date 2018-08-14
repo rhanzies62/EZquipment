@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ems.Domain.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Principal;
@@ -15,6 +16,7 @@ namespace Ems.Web.Authentication
         public string LastName { get; set; }
         public string Email { get; set; }
         public string[] Roles { get; set; }
+        public string[] AccessMenus { get; set; }
         #endregion
 
         public IIdentity Identity
@@ -24,7 +26,7 @@ namespace Ems.Web.Authentication
 
         public bool IsInRole(string role)
         {
-            if (Roles.Any(r => role.Contains(r)))
+            if (Roles.Any(r => r.Contains(role)))
             {
                 return true;
             }
