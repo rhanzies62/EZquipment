@@ -35,6 +35,7 @@ namespace Ems.Web.App_Start
             builder.RegisterType<CompanyService>().As<ICompanyService>().InstancePerRequest();
             builder.RegisterType<AuthenticateService>().As<IAuthenticateService>().InstancePerRequest();
             builder.RegisterType<EmailService>().As<IEmailService>().InstancePerRequest();
+            builder.RegisterType<UserService>().As<IUserService>().InstancePerRequest();
         }
     }
 }

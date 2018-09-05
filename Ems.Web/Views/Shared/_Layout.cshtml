@@ -1,5 +1,6 @@
 ﻿@using Ems.Web.Authentication
-@{ 
+@using Ems.Services
+@{
     var appUser = (AppPrincipal)this.User;
     ViewBag.Name = $"{appUser.FirstName} {appUser.LastName}";
     ViewBag.Role = appUser.Roles.FirstOrDefault();
@@ -35,28 +36,59 @@
                 <h5 class="sidenav-heading">Main</h5>
                 <ul id="side-main-menu" class="side-menu list-unstyled">
                     <li><a href="@Url.Action("index","dashboard")"> <i class=""></i>Dashboard</a></li>
-                    <li>
-                        <a href="#usermanagementDropdown" aria-expanded="false" data-toggle="collapse"> <i class=""></i>User</a>
-                        <ul id="usermanagementDropdown" class="collapse list-unstyled ">
-                            <li><a href="#">Manage</a></li>
-                            <li><a href="#">Roles</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#equipmentmanagementDropdown" aria-expanded="false" data-toggle="collapse"> <i class=""></i>Equipment </a>
-                        <ul id="equipmentmanagementDropdown" class="collapse list-unstyled ">
-                            <li><a href="#">Equipment Template</a></li>
-                            <li><a href="#">Manage</a></li>
-                            <li><a href="#">Track</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#settingsDropdown" aria-expanded="false" data-toggle="collapse"> <i class=""></i>Settings </a>
-                        <ul id="settingsDropdown" class="collapse list-unstyled ">
-                            <li><a href="#">Security</a></li>
-                            <li><a href="#">Company Profile</a></li>
-                        </ul>
-                    </li>
+                    @if (User.IsInRole(EmsResousrce.AMUser))
+                    {
+                        <li>
+                            <a href="#usermanagementDropdown" aria-expanded="false" data-toggle="collapse"> <i class=""></i>User</a>
+                            <ul id="usermanagementDropdown" class="collapse list-unstyled ">
+                                @if (User.IsInRole(EmsResousrce.AMUserManage))
+                                {
+                                    <li><a href="#">Manage</a></li>
+                                }
+                                @if (User.IsInRole(EmsResousrce.AMroles))
+                                {
+                                    <li><a href="#">Roles</a></li>
+                                }
+                            </ul>
+                        </li>
+                    }
+                    @if (User.IsInRole(EmsResousrce.AMEquipment))
+                    {
+                        <li>
+                            <a href="#equipmentmanagementDropdown" aria-expanded="false" data-toggle="collapse"> <i class=""></i>Equipment </a>
+                            <ul id="equipmentmanagementDropdown" class="collapse list-unstyled ">
+                                @if (User.IsInRole(EmsResousrce.AMEquipmentTemplate))
+                                {
+                                    <li><a href="#">Equipment Template</a></li>
+                                }
+                                @if (User.IsInRole(EmsResousrce.AMEquipmentManage))
+                                {
+                                    <li><a href="#">Manage</a></li>
+                                }
+                                @if (User.IsInRole(EmsResousrce.AMTrack))
+                                {
+                                    <li><a href="#">Track</a></li>
+                                }
+                            </ul>
+                        </li>
+                    }
+                    @if (User.IsInRole(EmsResousrce.AMSettings))
+                    {
+                        <li>
+                            <a href="#settingsDropdown" aria-expanded="false" data-toggle="collapse"> <i class=""></i>Settings </a>
+                            <ul id="settingsDropdown" class="collapse list-unstyled ">
+                                @if (User.IsInRole(EmsResousrce.AMSecurity))
+                                {
+                                    <li><a href="#">Security</a></li>
+                                }
+                                @if (User.IsInRole(EmsResousrce.AMCompanyProfile))
+                                {
+                                    <li><a href="#">Company Profile</a></li>
+                                }
+                            </ul>
+                        </li>
+                    }
+
                 </ul>
             </div>
         </div>

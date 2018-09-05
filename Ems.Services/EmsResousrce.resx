@@ -117,6 +117,33 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AMEquipment" xml:space="preserve">
+    <value>Equipment</value>
+  </data>
+  <data name="AMEquipmentManage" xml:space="preserve">
+    <value>EquipmentManage</value>
+  </data>
+  <data name="AMEquipmentTemplate" xml:space="preserve">
+    <value>EquipmentTemplate</value>
+  </data>
+  <data name="AMroles" xml:space="preserve">
+    <value>roles</value>
+  </data>
+  <data name="AMSecurity" xml:space="preserve">
+    <value>Security</value>
+  </data>
+  <data name="AMSettings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="AMTrack" xml:space="preserve">
+    <value>Track</value>
+  </data>
+  <data name="AMUser" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="AMUserManage" xml:space="preserve">
+    <value>UserManage</value>
+  </data>
   <data name="ConfigBaseUrl" xml:space="preserve">
     <value>BaseUrl</value>
   </data>
@@ -149,5 +176,11 @@
   </data>
   <data name="ErrMsgUserNameAlreadyExist" xml:space="preserve">
     <value>User name already exist</value>
+  </data>
+  <data name="AMCompanyProfile" xml:space="preserve">
+    <value>CompanyProfile</value>
+  </data>
+  <data name="ErrMsgUserNotFound" xml:space="preserve">
+    <value>User not found</value>
   </data>
 </root>

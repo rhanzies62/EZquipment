@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ems.Services.Interface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,22 @@ namespace Ems.Web.Controllers
 {
     public class ProfileController : BaseController
     {
-        // GET: Profile
+        private readonly IUserService _userService;
+        public ProfileController(IUserService userService)
+        {
+            _userService = userService;
+        }
         public ActionResult Index()
         {
             return View();
         }
+
+        [HttpGet]
+        public JsonResult GetProfile()
+        {
+            var user = _userService.Get(appUser.UserId);
+            return Json(user, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

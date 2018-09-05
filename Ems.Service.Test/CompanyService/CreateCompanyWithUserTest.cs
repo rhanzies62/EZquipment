@@ -11,9 +11,9 @@ using System.Linq;
 namespace Ems.Service.Test
 {
     [TestClass]
-    public class CompanyServiceTest
+    public class CreateCompanyWithUserTest
     {
-        public CompanyServiceTest()
+        public CreateCompanyWithUserTest()
         {
         }
 

@@ -8,7 +8,7 @@ using Ems.Services;
 namespace Ems.Service.Test.AuthenticateService
 {
     [TestClass]
-    public class AuthenticateServiceTest
+    public class LoginUserTest
     {
         [TestMethod]
         public void LoginUser_Correct_Success()

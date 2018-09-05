@@ -222,6 +222,7 @@
     <Content Include="Scripts\app\components\companyRegister.component.js" />
     <Content Include="Scripts\app\models\CompanyRegistrationModel.js" />
     <Content Include="Scripts\app\shared\services\login.Service.js" />
+    <Content Include="Scripts\app\shared\services\user.Service.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />

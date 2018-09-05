@@ -43,6 +43,7 @@ namespace Ems.Web
                 principal.FirstName = serializeModel.FirstName;
                 principal.LastName = serializeModel.LastName;
                 principal.Roles = serializeModel.Roles;
+                principal.AccessMenus = serializeModel.AccessMenus;
 
                 HttpContext.Current.User = principal;
             }

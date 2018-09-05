@@ -61,6 +61,96 @@ namespace Ems.Services {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CompanyProfile.
+        /// </summary>
+        public static string AMCompanyProfile {
+            get {
+                return ResourceManager.GetString("AMCompanyProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Equipment.
+        /// </summary>
+        public static string AMEquipment {
+            get {
+                return ResourceManager.GetString("AMEquipment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EquipmentManage.
+        /// </summary>
+        public static string AMEquipmentManage {
+            get {
+                return ResourceManager.GetString("AMEquipmentManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EquipmentTemplate.
+        /// </summary>
+        public static string AMEquipmentTemplate {
+            get {
+                return ResourceManager.GetString("AMEquipmentTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to roles.
+        /// </summary>
+        public static string AMroles {
+            get {
+                return ResourceManager.GetString("AMroles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Security.
+        /// </summary>
+        public static string AMSecurity {
+            get {
+                return ResourceManager.GetString("AMSecurity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string AMSettings {
+            get {
+                return ResourceManager.GetString("AMSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Track.
+        /// </summary>
+        public static string AMTrack {
+            get {
+                return ResourceManager.GetString("AMTrack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User.
+        /// </summary>
+        public static string AMUser {
+            get {
+                return ResourceManager.GetString("AMUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UserManage.
+        /// </summary>
+        public static string AMUserManage {
+            get {
+                return ResourceManager.GetString("AMUserManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to BaseUrl.
         /// </summary>
         public static string ConfigBaseUrl {
@@ -156,6 +246,15 @@ namespace Ems.Services {
         public static string ErrMsgUserNameAlreadyExist {
             get {
                 return ResourceManager.GetString("ErrMsgUserNameAlreadyExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User not found.
+        /// </summary>
+        public static string ErrMsgUserNotFound {
+            get {
+                return ResourceManager.GetString("ErrMsgUserNotFound", resourceCulture);
             }
         }
     }

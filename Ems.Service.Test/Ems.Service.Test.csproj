@@ -65,9 +65,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="AuthenticateService\UnitTest1.cs" />
-    <Compile Include="CompanyService\UnitTest1.cs" />
+    <Compile Include="AuthenticateService\LoginUserTest.cs" />
+    <Compile Include="CompanyService\CreateCompanyWithUserTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserService\GetUserTest.cs" />
+    <Compile Include="UserService\UpdateTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ems.Data\Ems.Data.csproj">

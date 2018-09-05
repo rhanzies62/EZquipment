@@ -12,7 +12,6 @@ namespace Ems.Web.Controllers
         // GET: Dashboard
         public ActionResult Index()
         {
-            appUser.IsInRole("Test");
             return View();
         }
     }

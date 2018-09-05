@@ -26,7 +26,7 @@ namespace Ems.Web.Authentication
 
         public bool IsInRole(string role)
         {
-            if (Roles.Any(r => r.Contains(role)))
+            if (AccessMenus.Any(i => role == i))
             {
                 return true;
             }
